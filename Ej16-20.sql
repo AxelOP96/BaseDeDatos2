@@ -9,7 +9,7 @@ WHERE ProductPhotoID IS NOT NULL;
 
 --17- Listar la cantidad de productos que existan por cada una de las 
 --Clases (Ayuda: campo Class) 
-SELECT Class AS CLase, COUNT(Name) AS Cantidad_Productos 
+SELECT Class AS Clase, COUNT(Name) AS Cantidad_Productos 
 FROM Production.Product
 GROUP BY CLASS
 HAVING Class IS NOT NULL;
@@ -20,7 +20,9 @@ HAVING Class IS NOT NULL;
 --Otro. (Ayuda: utilizar case)
 SELECT descr.Description AS Descripcion, --P.Color 
 	CASE 
-		WHEN P.Color NOT LIKE '%Black%' OR P.Color NOT LIKE '%Silver%' THEN 'Otro'
+		WHEN Color = 'silver' THEN 'Silver'
+        WHEN Color = 'black' THEN 'Black'
+        ELSE 'Otro'
 	END AS Color
 FROM Production.Product P
 INNER JOIN Production.ProductModelProductDescriptionCulture AS pmpdc ON P.ProductModelID = pmpdc.ProductModelID
@@ -36,3 +38,7 @@ INNER JOIN Production.ProductCategory AS pc ON psc.ProductCategoryID = pc.Produc
 
 
 --20- Listar la cantidad de subcategorías que posean asignado los productos. (Ayuda: distinct).
+	SELECT Count(P.ProductSubcategoryID) AS Cantidad_subcategorias, psc.ProductSubcategoryID
+	FROM Production.Product P
+	INNER JOIN Production.ProductSubcategory AS psc ON P.ProductSubcategoryID = psc.ProductSubcategoryID
+	GROUP BY psc.ProductSubcategoryID
