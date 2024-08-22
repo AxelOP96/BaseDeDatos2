@@ -1,8 +1,10 @@
 --1- Listar los códigos y descripciones de todos los productos
 --(Ayuda: Production.Product)
-SELECT ProductId, Name
-FROM Production.Product;
-
+SELECT ProductId, Name, descr.Description
+FROM Production.Product AS P
+INNER JOIN Production.ProductModelProductDescriptionCulture AS pmpdc ON pmpdc.ProductModelID = P.ProductModelID
+INNER JOIN Production.ProductDescription AS descr ON descr.ProductDescriptionID = pmpdc.ProductDescriptionID
+Select * FROM Production.ProductDescription
 
 --2- Listar los datos de la subcategoría número 17 (Ayuda:
 --Production.ProductSubCategory)
@@ -13,9 +15,10 @@ WHERE ProductSubcategoryID = 17;
 
 --3- Listar los productos cuya descripción comience con D (Ayuda:
 --like ‘D%’)
-SELECT *
-FROM Production.ProductModelProductDescriptionCulture
-INNER JOIN Production.ProductDescription as pdesc ON pdesc.ProductDescriptionID = Production.ProductModelProductDescriptionCulture.ProductDescriptionID
+SELECT Description, P.Name
+FROM Production.ProductModelProductDescriptionCulture AS pmpdc
+INNER JOIN Production.ProductDescription as pdesc ON pdesc.ProductDescriptionID = pmpdc.ProductDescriptionID
+INNER JOIN Production.Product AS P ON P.ProductModelID = pmpdc.ProductModelID
 WHERE Description LIKE 'D%';
 
 
