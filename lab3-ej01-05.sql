@@ -12,7 +12,7 @@ SELECT DATEDIFF(DAY,GETDATE(), @Primavera) as Dias_para_primavera
 
 
 --4. Realizar una consulta que permita redondear el número 385,86 con únicamente 1 decimal. 
-SELECT  ROUND(385.86, 1) 
+SELECT  ROUND(385.86, 1) AS Redondeo
 
 
---5. Realizar una consulta permita saber cuánto es el mes actual al cuadrado. Por ejemplo, si estamos en Junio, sería 62SELECT MONTH(GETDATE()) * MONTH(GETDATE())
+--5. Realizar una consulta permita saber cuánto es el mes actual al cuadrado. Por ejemplo, si estamos en Junio, sería 62SELECT MONTH(GETDATE()) * MONTH(GETDATE()) AS Mes_al_cuadrado
