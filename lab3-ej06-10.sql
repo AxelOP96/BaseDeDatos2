@@ -1,5 +1,5 @@
 --6. Devolver cuál es el usuario que se encuentra conectado a la base de datos 
-SELECT USER_NAME() AS Usuario
+SELECT SUSER_NAME() AS Usuario
 
 
 --7. Realizar una consulta que permita conocer la edad de cada empleado (Ayuda: HumanResources.Employee)
